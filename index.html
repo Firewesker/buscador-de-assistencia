@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscador de Assistência Técnica</title>
+  
+  <!-- Vinculação do arquivo de Estilização CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="page-layout">
+    <section class="container" aria-labelledby="pageTitle">
+      <img src="Assets/Img/notebook.svg" width="48" height="48" alt="" aria-hidden="true" style="margin-bottom: 10px;">
+
+      <h1 id="pageTitle">PC quebrou?</h1>
+      <p>Digite o seu bairro ou cidade abaixo para encontrar as assistências técnicas na própria tela.</p>
+
+      <div class="input-group">
+        <input type="text" id="userLocation" placeholder="Ex: Vinte e Cinco de Agosto, Duque de Caxias" autocomplete="off">
+        <button type="button">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          Buscar Assistências
+        </button>
+      </div>
+
+      <div id="loading" class="loading">
+        Consultando o Google Maps...
+      </div>
+
+      <div id="apiWarning" class="api-warning">
+        ⚠️ Não foi possível consultar os locais. Verifique a configuração do servidor e tente novamente.
+      </div>
+
+      <div id="results" class="results"></div>
+    </section>
+
+    <section class="chat-panel" aria-labelledby="chatTitle">
+      <header class="chat-header">
+        <div class="chat-avatar" aria-hidden="true">
+          <img src="Assets/Img/faleconosco.svg" width="42" height="42" alt="">
+        </div>
+        <div>
+          <h2 id="chatTitle">Assistente técnico</h2>
+          <p>Tire dúvidas e encontre uma assistência</p>
+        </div>
+      </header>
+
+      <div id="chatMessages" class="chat-messages" role="log" aria-live="polite" aria-relevant="additions">
+        <div class="chat-message assistant-message">
+          Olá! Conte o que está acontecendo com seu computador. Posso ajudar a entender o problema e procurar uma assistência na sua cidade.
+        </div>
+      </div>
+
+      <div id="chatStatus" class="chat-status" role="status" aria-live="polite"></div>
+      <form id="chatForm" class="chat-composer">
+        <label class="sr-only" for="chatInput">Mensagem para o assistente</label>
+        <textarea id="chatInput" rows="2" maxlength="2000" placeholder="Escreva sua mensagem..." required></textarea>
+        <button id="sendChatButton" type="submit" aria-label="Enviar mensagem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+      <p class="chat-disclaimer">As sugestões não substituem o diagnóstico de um técnico.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="chat.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "buscador-assistencia-tecnica": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "--env-file-if-exists=.env",
+        "${workspaceFolder}\\mcp-server.js"
+      ],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
