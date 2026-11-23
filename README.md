@@ -33,7 +33,4 @@ Por padrão, a busca nacional usa português (`pt-BR`) e `regionCode: BR`.
 
 ## Configuração no VS Code
 
-O arquivo `.vscode/mcp.json` registra o servidor para o workspace. Depois de
-iniciar o proxy com `npm start`, use a ação de inicialização do servidor MCP no
-VS Code. Em outro cliente MCP, configure o comando `npm run mcp` com o diretório
-do projeto como diretório de trabalho.
+O arquivo .vscode/mcp.json é responsável por registrar o servidor no workspace atual. Com o proxy rodando via npm start, ative o servidor MCP diretamente pelo painel de controle do VS Code. Para conectar outros clientes MCP, configure o comando npm run mcp, definindo a raiz do projeto como o diretório de trabalho (working directory).
