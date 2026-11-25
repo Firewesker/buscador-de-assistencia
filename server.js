@@ -373,7 +373,7 @@ async function searchPlaces(request, response) {
   }
 }
 
-const server = http.createServer(async (request, response) => {
+async function requestHandler(request, response) {
   const requestUrl = new URL(request.url, `http://${request.headers.host || 'localhost'}`);
 
   if (requestUrl.pathname === '/api/places/search') {
@@ -420,7 +420,7 @@ const server = http.createServer(async (request, response) => {
   }
 
   try {
-    const filePath = path.join(__dirname, publicFile[0]);
+    const filePath = path.join(process.cwd(), publicFile[0]);
     const content = await fs.readFile(filePath);
     response.writeHead(200, {
       'Content-Type': publicFile[1],
@@ -432,11 +432,16 @@ const server = http.createServer(async (request, response) => {
     response.writeHead(500);
     response.end('Internal server error');
   }
-});
+}
 
-server.listen(PORT, () => {
-  console.log(`Buscador disponível em http://localhost:${PORT}`);
-  if (!GOOGLE_MAPS_API_KEY) {
-    console.warn('GOOGLE_MAPS_API_KEY não está configurada; buscas reais estão desativadas.');
-  }
-});
+module.exports = requestHandler;
+
+if (!process.env.VERCEL) {
+  const server = http.createServer(requestHandler);
+  server.listen(PORT, () => {
+    console.log(`Buscador disponível em http://localhost:${PORT}`);
+    if (!GOOGLE_MAPS_API_KEY) {
+      console.warn('GOOGLE_MAPS_API_KEY não está configurada; buscas reais estão desativadas.');
+    }
+  });
+}
